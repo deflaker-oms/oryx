@@ -10,15 +10,13 @@ before_install:
   - export M2_HOME=$PWD/apache-maven-3.5.0
   - export PATH=$M2_HOME/bin:$PATH
 
-env:
-  - FIREBASE_KEY=AIzaSyDU7I6pnN322BvRNN24jRX52owAvuHH1K4
-
 install: mvn ${SPARK} -Ptravis -Pnetlib -DskipTests=true -nsu -B install
 script:
   - mvn ${SPARK} ${JACOCO} -Ptravis -Pnetlib -q -nsu -B verify
   - find $HOME/.m2/repository/com/cloudera/oryx -path "*SNAPSHOT/*" -delete
   - find $HOME/.m2/repository/com/cloudera/oryx -name "*SNAPSHOT" -type d -delete
-env: JACOCO=-Pjacoco
+env: JACOCO=-Pjacoco FIREBASE_KEY=AIzaSyDU7I6pnN322BvRNN24jRX52owAvuHH1K4
+
 cache:
   directories:
     - $HOME/.m2
