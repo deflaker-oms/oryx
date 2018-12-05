@@ -13,7 +13,8 @@ before_install:
 install: true 
 #   - mvn ${SPARK} -Ptravis -Pnetlib -DskipTests=true -nsu -B install
 script:
-  - mvn ${SPARK} ${JACOCO} -Ptravis -Pnetlib -q -nsu -B verify
+  - mvn ${SPARK} ${JACOCO} -Ptravis -Pnetlib -B verify
+#   - mvn ${SPARK} ${JACOCO} -Ptravis -Pnetlib -q -nsu -B verify
   - find $HOME/.m2/repository/com/cloudera/oryx -path "*SNAPSHOT/*" -delete
   - find $HOME/.m2/repository/com/cloudera/oryx -name "*SNAPSHOT" -type d -delete
 env: JACOCO=-Pjacoco FIREBASE_KEY=AIzaSyDU7I6pnN322BvRNN24jRX52owAvuHH1K4
