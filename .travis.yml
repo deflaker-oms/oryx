@@ -10,7 +10,8 @@ before_install:
   - export M2_HOME=$PWD/apache-maven-3.5.0
   - export PATH=$M2_HOME/bin:$PATH
 
-install: mvn ${SPARK} -Ptravis -Pnetlib -DskipTests=true -nsu -B install
+install: true 
+#   - mvn ${SPARK} -Ptravis -Pnetlib -DskipTests=true -nsu -B install
 script:
   - mvn ${SPARK} ${JACOCO} -Ptravis -Pnetlib -q -nsu -B verify
   - find $HOME/.m2/repository/com/cloudera/oryx -path "*SNAPSHOT/*" -delete
